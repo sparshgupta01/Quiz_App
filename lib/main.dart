@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'questionslist.dart';
-import 'datbase.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 List<Icon> answer = [];
 void main() {
   runApp(const MyApp());
@@ -55,7 +55,7 @@ class UidesignState extends State<Uidesign> {
                 child: InkWell(
                     onTap: () {
                       setState(() {
-                        ab.next_question(answerno,true);
+                        ab.next_question(answerno,true, context);
                       });
                     },
                     child: Card(
@@ -73,7 +73,7 @@ class UidesignState extends State<Uidesign> {
                 child: InkWell(
                     onTap: () {
                       setState(() {
-                        ab.next_question(answerno,false);
+                        ab.next_question(answerno,false, context);
                       });
                     },
                     child: Card(
@@ -89,8 +89,9 @@ class UidesignState extends State<Uidesign> {
             SizedBox(
               height: 50,
             ),
-            Row(children: answer,)
+            SingleChildScrollView(child: Row(children: answer,),scrollDirection: Axis.horizontal,)
           ],
         ));
   }
+
 }

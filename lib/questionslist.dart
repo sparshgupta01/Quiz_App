@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:project4/datbase.dart';
 import 'main.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class qlist {
   List<Question> _q = [
@@ -31,7 +32,14 @@ class qlist {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
-  void next_question(int n,bool b ){
+  _onBasicAlertPressed(  BuildContext context) {
+    Alert(
+      context: context,
+      title: "Completed !!!",
+      desc: "You have succesfully completed the qiz.",
+    ).show();
+  }
+  void next_question(int n,bool b,  BuildContext context){
     if (b==_q[n].coranswer){
       answer.add(Icon(Icons.check,color: Colors.green,));
     }
@@ -39,11 +47,13 @@ class qlist {
       answer.add(Icon(Icons.close,color: Colors.red,));
     }
     if(n<_q.length-1){answerno++;}
-    else{
+    else{_onBasicAlertPressed(context);
+    answer = [];
       answerno=0;
     }
   }
   String textgiven(int n){
     return _q[n].question;
   }
+
 }
